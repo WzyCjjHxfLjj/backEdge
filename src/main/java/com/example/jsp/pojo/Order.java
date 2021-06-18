@@ -29,9 +29,9 @@ public class Order implements Serializable {
 	private List<ProductPackage> productPackages;
 	private String time;
 
-    public Order() {
-        time=LocalDateTime.now().toString();
-        productPackages=new LinkedList<>();
-        orderInfos=new LinkedList<>();
-    }
+	public Order () {
+		time = LocalDateTime.now().toString();
+		productPackages = new LinkedList<>();
+		orderInfos = new LinkedList<>();
+	}
 }

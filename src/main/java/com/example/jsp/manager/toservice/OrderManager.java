@@ -41,5 +41,5 @@ public interface OrderManager {
 
 	OrderManager addOrderInfo (Order target, OrderInfo orderInfo);
 
-	List<Order> selectByStatus (Integer low,Integer big);
+	List<Order> selectByStatus (Integer low, Integer big);
 }

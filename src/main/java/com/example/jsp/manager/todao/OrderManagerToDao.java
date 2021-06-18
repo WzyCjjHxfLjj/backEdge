@@ -20,5 +20,5 @@ public interface OrderManagerToDao {
 
 	Integer getId (Order target);
 
-	List<Order> selectByStatus (Integer low,Integer big);
+	List<Order> selectByStatus (Integer low, Integer big);
 }

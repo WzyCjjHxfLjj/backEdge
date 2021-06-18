@@ -28,5 +28,5 @@ public interface AddressManager {
 
 	Integer getId (Address address);
 
-	Integer inOrder(Integer addressId);
+	Integer inOrder (Integer addressId);
 }
