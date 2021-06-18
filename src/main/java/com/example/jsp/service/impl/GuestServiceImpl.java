@@ -36,7 +36,9 @@ public class GuestServiceImpl implements GuestService {
 	}
 
 	@Autowired
-	public void setAddressManager(AddressManager addressManager) { this.addressManager = addressManager; }
+	public void setAddressManager (AddressManager addressManager) {
+		this.addressManager = addressManager;
+	}
 
 	@Override
 	public void create (Guest target) throws ProjectException {

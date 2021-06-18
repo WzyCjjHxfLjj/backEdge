@@ -86,7 +86,7 @@ public class OrderController {
 		order.setStore(store)
 				.setGuest(guest)
 				.setAddress(guestService.getAddress(addressId)).setStatus(0).setMessage("创建成功，等待接单");
-		orderService.create(order,nums,ids);
+		orderService.create(order, nums, ids);
 		return transporter.setMsg("创建成功");
 	}
 
@@ -100,12 +100,12 @@ public class OrderController {
 		return transporter;
 	}
 
-	@SaCheckRole(value = {"admin","guest","deliver","store"},mode = SaMode.OR)
+	@SaCheckRole(value = {"admin", "guest", "deliver", "store"}, mode = SaMode.OR)
 	@GetMapping("/show/{statusLow}/{statusBig}")
-	public Transporter selectByStatus(@PathVariable("statusLow")String statusLowString,@PathVariable("statusBig")String statusHighString){
-		var statusL=Integer.parseInt(statusLowString);
-		var statusH=Integer.parseInt(statusHighString);
-		final List<Order> orderList = orderService.selectByStatus(statusL,statusH);
+	public Transporter selectByStatus (@PathVariable("statusLow") String statusLowString, @PathVariable("statusBig") String statusHighString) {
+		var statusL = Integer.parseInt(statusLowString);
+		var statusH = Integer.parseInt(statusHighString);
+		final List<Order> orderList = orderService.selectByStatus(statusL, statusH);
 		final var transporter = new Transporter();
 		transporter.addData("orderList", orderList).setMsg("success");
 		return transporter;
@@ -126,7 +126,7 @@ public class OrderController {
 	/**
 	 * 订单异常报告
 	 */
-	@SaCheckRole(value = {"admin","guest", "deliver", "store"}, mode = SaMode.OR)
+	@SaCheckRole(value = {"admin", "guest", "deliver", "store"}, mode = SaMode.OR)
 	@GetMapping("/exception/{orderId}/{msg}")
 	@Transactional(rollbackFor = Exception.class)
 	public Transporter setMsg (@PathVariable("orderId") String orderIdString,
@@ -210,11 +210,11 @@ public class OrderController {
 		return transporter;
 	}
 
-	@SaCheckRole(value = {"admin","store"},mode = SaMode.OR)
+	@SaCheckRole(value = {"admin", "store"}, mode = SaMode.OR)
 	@GetMapping("/take/{orderId}")
 	@Transactional(rollbackFor = Exception.class)
-	public Transporter takeOrder(@PathVariable("orderId")String orderIdString)throws ProjectException{
-		var orderId=Integer.parseInt(orderIdString);
+	public Transporter takeOrder (@PathVariable("orderId") String orderIdString) throws ProjectException {
+		var orderId = Integer.parseInt(orderIdString);
 		final var order = orderService.select(orderId);
 		order.setStatus(2).setMessage("订单制作完成");
 		orderService.restore(order);

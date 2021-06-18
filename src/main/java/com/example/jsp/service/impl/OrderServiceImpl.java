@@ -114,8 +114,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<Order> selectByStatus (Integer low,Integer big) {
-		return orderManager.selectByStatus(low,big);
+	public List<Order> selectByStatus (Integer low, Integer big) {
+		return orderManager.selectByStatus(low, big);
 	}
 
 }
