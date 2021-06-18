@@ -88,14 +88,9 @@ public class UserController {
 
 	@GetMapping("/logOut")
 	public Transporter logOut(){
-		StpUtil.logout();
 		final Object loginId = StpUtil.getLoginId();
+		StpUtil.logout();
 		final var transporter = new Transporter();
-		if(loginId==null){
-			transporter.setMsg("注销成功");
-		}else{
-			transporter.fail(1,"注销失败");
-		}
-		return transporter;
+		return transporter.setMsg(loginId+" loginOut");
 	}
 }
