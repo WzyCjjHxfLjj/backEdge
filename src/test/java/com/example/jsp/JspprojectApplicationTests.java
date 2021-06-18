@@ -3,6 +3,7 @@ package com.example.jsp;
 import cn.dev33.satoken.stp.StpInterface;
 import com.example.jsp.commons.exception.ProjectException;
 import com.example.jsp.commons.oldexception.manager.ProjectExceptionOld;
+import com.example.jsp.commons.oldexception.manager.SonElementNotExistExceptionOld;
 import com.example.jsp.manager.toservice.*;
 import com.example.jsp.pojo.*;
 import com.example.jsp.service.StoreService;
@@ -256,4 +257,15 @@ class JspprojectApplicationTests {
 			e.printStackTrace();
 		}
 	}
+
+	@Test
+  public void test1(){
+    Store select = storeManager.select(1);
+    select.setAddress(select.getAddress()+"1").setTelephone(select.getTelephone()+"1");
+    try {
+      storeManager.restore(select);
+    } catch (SonElementNotExistExceptionOld sonElementNotExistExceptionOld) {
+      sonElementNotExistExceptionOld.printStackTrace();
+    }
+  }
 }

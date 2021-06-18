@@ -56,7 +56,6 @@ public class GuestManagerImpl implements GuestManagerToDao, GuestManager {
 		Integer id = guestDao.getId(target);
 		if (id == null) {
 			save(target);
-			addressManager.dropByGuestId(target.getId());
 			for (Address address : target.getAddresses()) {
 				address.setGuestId(target.getId());
 				int i = addressManager.insert(address);
