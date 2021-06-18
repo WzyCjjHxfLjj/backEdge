@@ -111,7 +111,7 @@ public class StoreManagerImpl implements StoreManagerToDao, StoreManager {
 
 	@Override
 	public Integer restore (Store store) throws SonElementNotExistExceptionOld {
-		Integer id = store.getId();
+		Integer id = getId(store);
 		if (id == null) {
 			Boolean notExist = userManager.isNotExist(store.getUser().getId());
 			if (Boolean.TRUE.equals(notExist)) {
