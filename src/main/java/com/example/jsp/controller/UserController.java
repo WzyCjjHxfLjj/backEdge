@@ -86,4 +86,15 @@ public class UserController {
 		return new Transporter().setMsg("管理员注册成功");
 	}
 
+	@GetMapping("/logOut")
+	public Transporter logOut(){
+		StpUtil.logout();
+		final Object loginId = StpUtil.getLoginId();
+		final var transporter = new Transporter();
+		if(loginId==null){
+			transporter.setMsg("注销成功");
+		}else{
+			transporter.fail(1,"注销失败");
+		}
+	}
 }
