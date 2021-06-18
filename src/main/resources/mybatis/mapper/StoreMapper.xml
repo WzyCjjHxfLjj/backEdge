@@ -14,11 +14,11 @@
     </resultMap>
     <select id="selectAll" resultMap="StoreMap">
         select *
-        from store
+        from jspproject.store
     </select>
     <select id="selectById" parameterType="integer" resultMap="StoreMap">
         select *
-        from store
+        from jspproject.store
         where s_id = #{id}
     </select>
     <insert id="save" parameterType="com.example.jsp.pojo.Store" useGeneratedKeys="true" keyColumn="s_id"

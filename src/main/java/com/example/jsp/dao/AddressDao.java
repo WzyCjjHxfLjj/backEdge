@@ -27,5 +27,5 @@ public interface AddressDao {
 
 	Integer getId (@Param("target") Address address);
 
-	Integer inOrder(@Param("id") Integer addressId);
+	Integer inOrder (@Param("id") Integer addressId);
 }

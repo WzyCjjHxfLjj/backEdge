@@ -24,5 +24,5 @@ public interface AddressManagerToDao {
 
 	Integer getId (Address address);
 
-	Integer inOrder(Integer addressId);
+	Integer inOrder (Integer addressId);
 }

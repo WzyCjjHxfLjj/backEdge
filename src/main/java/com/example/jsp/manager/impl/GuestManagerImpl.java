@@ -124,7 +124,7 @@ public class GuestManagerImpl implements GuestManagerToDao, GuestManager {
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public Integer restore (Guest target) throws SonElementNotExistExceptionOld,ProjectException {
+	public Integer restore (Guest target) throws SonElementNotExistExceptionOld, ProjectException {
 		Integer id = getId(target);
 		Boolean notExist = userManager.isNotExist(target.getLoginUser().getId());
 		if (Boolean.TRUE.equals(notExist)) {
@@ -134,23 +134,23 @@ public class GuestManagerImpl implements GuestManagerToDao, GuestManager {
 		final var oldMap = new HashMap<>();
 		final var addressesOld = addressManager.selectByGuestId(target.getId());
 		for (Address address : target.getAddresses()) {
-			newMap.put(address.getAddressString(),address.getId());
+			newMap.put(address.getAddressString(), address.getId());
 		}
 		for (Address address : addressesOld) {
-			oldMap.put(address.getAddressString(),address.getId());
+			oldMap.put(address.getAddressString(), address.getId());
 		}
 		for (Address address : target.getAddresses()) {
-			if(!oldMap.containsKey(address.getAddressString())){
+			if (!oldMap.containsKey(address.getAddressString())) {
 				address.setGuestId(target.getId());
 				addressManager.insert(address);
 				address.setId(address.getId());
 			}
 		}
 		for (Address address : addressesOld) {
-			if(!newMap.containsKey(address.getAddressString())){
-				if(addressManager.inOrder(address.getId())!=null){
-					throw new ProjectException("地址正被订单引用",704);
-				}else {
+			if (!newMap.containsKey(address.getAddressString())) {
+				if (addressManager.inOrder(address.getId()) != null) {
+					throw new ProjectException("地址正被订单引用", 704);
+				} else {
 					addressManager.destroy(address.getId());
 				}
 			}
