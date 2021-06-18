@@ -96,5 +96,6 @@ public class UserController {
 		}else{
 			transporter.fail(1,"注销失败");
 		}
+		return transporter;
 	}
 }
